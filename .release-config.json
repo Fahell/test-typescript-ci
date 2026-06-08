@@ -1,0 +1,50 @@
+{
+  "name": "test-typescript-ci",
+  "type": "typescript",
+  
+  "version": {
+    "files": ["src/version.ts", "package.json"],
+    "patterns": {
+      "src/version.ts": "export const VERSION = 'v{version}';"
+    }
+  },
+
+  "build": {
+    "command": "npm run build",
+    "artifacts": ["dist/index.js", "dist/index.d.ts"],
+    "minSizeKB": 0.1,
+    "maxSizeKB": 100
+  },
+
+  "lint": {
+    "enabled": true,
+    "command": "npm run lint"
+  },
+
+  "tests": {
+    "enabled": true,
+    "command": "npm test"
+  },
+
+  "typeCheck": {
+    "enabled": true
+  },
+
+  "security": {
+    "audit": true,
+    "detectSecrets": true
+  },
+
+  "pr": {
+    "enabled": true,
+    "baseBranch": "main",
+    "requireCI": true,
+    "autoMerge": true,
+    "mergeStrategy": "squash"
+  },
+
+  "githubRelease": {
+    "enabled": true,
+    "generateChangelog": true
+  }
+}
